@@ -53,4 +53,7 @@ end
 # ==================================
 # Added gems
 # ==================================
+gem 'dry-validation', '~> 1.6'
+gem 'dry-types', '~> 1.2'
+gem 'dry-struct', '~> 1.0'
 gem "figaro"
