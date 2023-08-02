@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:incomplete_user) }
+  let(:user) { FactoryBot.create(:complete_user) }
   subject { user }
 
   it 'has a valid Factory' do
     expect(subject).to be_valid
+  end
+
+  it 'associations' do
+    is_expected.to have_one :user_credential
   end
 
   it 'validations' do

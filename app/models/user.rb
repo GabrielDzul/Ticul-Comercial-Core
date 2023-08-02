@@ -4,6 +4,9 @@ class User < ApplicationRecord
   attribute :blocked, :boolean, default: false
   attribute :verified, :boolean, default: false
 
+  has_one :user_credential,
+          dependent: :destroy
+
   validates :status,
             presence: true
 
