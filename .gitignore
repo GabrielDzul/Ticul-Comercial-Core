@@ -34,3 +34,6 @@
 
 #ignore idea related stuff
 .idea
+
+# Ignore application configuration
+/config/application.yml
