@@ -2,5 +2,10 @@ Figaro.require_keys(
   "db_host",
   "db_name",
   "db_username",
-  "db_password"
+  "db_password",
+  "jwt_key",
+  "smtp_username",
+  "smtp_password",
+  "smtp_address",
+  "smtp_port"
 )

@@ -1,0 +1,4 @@
+es:
+  mailer:
+    welcome:
+      subject: "Confirma tu cuenta"
