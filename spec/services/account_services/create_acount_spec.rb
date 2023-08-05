@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'UserServices::CreateAccount', type: :service do
+describe 'AccountServices::CreateAccount', type: :service do
   let(:service) { AccountServices::CreateAccount.new }
 
   let!(:user) { create(:user, phone: '+529999552058') }
