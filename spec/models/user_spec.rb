@@ -28,4 +28,26 @@ RSpec.describe User, type: :model do
     is_expected.to allow_value(nil).for(:phone)
     is_expected.not_to allow_value('+909971120789').for(:phone)
   end
+
+  context 'email_confirmed?' do
+    it 'when activation code is nil and activation date is present is TRUE' do
+      user = build(:user, activation_code: nil, activation_date: Time.now)
+      expect(user.email_confirmed?).to be_truthy
+    end
+
+    it 'when activation code is present and activation date is nil is FALSE' do
+      user = build(:user, activation_code: 'some-code', activation_date: nil)
+      expect(user.email_confirmed?).to be_falsey
+    end
+
+    it 'when activation code is present and activation date is present' do
+      user = build(:user, activation_code: 'some-code', activation_date: Time.now)
+      expect(user.email_confirmed?).to be_falsey
+    end
+
+    it 'when activation code is nil and activation date is nil' do
+      user = build(:user, activation_code: nil, activation_date: nil)
+      expect(user.email_confirmed?).to be_falsey
+    end
+  end
 end

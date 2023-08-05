@@ -43,4 +43,8 @@ class User < ApplicationRecord
   def email=(value)
     super(value.try(:downcase))
   end
+
+  def email_confirmed?
+    activation_code.nil? && activation_date.present?
+  end
 end
