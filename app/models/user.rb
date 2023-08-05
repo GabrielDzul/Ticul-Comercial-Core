@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_one :user_credential,
           dependent: :destroy
 
+  has_many :accounts,
+           dependent: :destroy
+
   validates :status,
             presence: true
 
@@ -14,8 +17,9 @@ class User < ApplicationRecord
             uniqueness: { allow_nil: true }
 
   validates :phone,
-            allow_blank: true,
-            uniqueness: true
+            presence: true,
+            uniqueness: true,
+            format: { with: RegexConstants::MEXICAN_PHONE }
 
   validates :name,
             allow_nil: true,

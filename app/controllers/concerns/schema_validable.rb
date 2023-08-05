@@ -28,7 +28,7 @@ module SchemaValidable
   end
 
   def get_inferred_schema
-    name = "Schemas::#{controller_name.camelize}::#{action_name.camelize}"
+    name = "Schemas::App::#{controller_name.camelize}::#{action_name.camelize}"
     name.constantize.new
   end
 end

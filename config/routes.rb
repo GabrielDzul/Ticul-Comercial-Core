@@ -9,7 +9,27 @@ Rails.application.routes.draw do
     # Sign Up
     #   - PUT  /app/sign_up
     # ==================================
-    resource :sign_up, only: %i[create], controller: :sign_up do
+    resource :sign_up, only: %i[create], controller: :sign_up
+
+    # ==================================
+    # Users
+    #   - POST /app/users
+    # ==================================
+    resources :users, only: %i[create]
+  end
+
+  # ==================================
+  # Dev utilities
+  # ==================================
+  unless Rails.env.production?
+    # ==================================
+    # API Docs
+    #   - GET     /docs/app
+    # ==================================
+    resources :docs, only: [:index] do
+      collection do
+        get :app
+      end
     end
   end
 end

@@ -7,6 +7,7 @@ FactoryBot.define do
       paternal_surname { Faker::Name.last_name }
       maternal_surname { Faker::Name.last_name }
       email { Faker::Internet.email }
+      phone { "+52#{Faker::Number.number(digits: 10)}" }
 
       trait :unverified do
         activation_date { nil }
@@ -23,10 +24,10 @@ FactoryBot.define do
       activation_code { nil }
       status { Attributes::UserStatus::COMPLETE }
       phone { "+52#{Faker::Number.number(digits: 10)}" }
-    end
 
-    factory :complete_user_with_credential do
-      association :user_credential, factory: :user_credential
+      factory :complete_user_with_credential do
+        association :user_credential, factory: :user_credential
+      end
     end
   end
 end
