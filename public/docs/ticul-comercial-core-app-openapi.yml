@@ -1,0 +1,256 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Ticul Comercial API Documentation
+  contact:
+    email: gabrieldzul@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: >
+    # Description
+
+    Backend to handle users, ads, accounts, payments.
+
+
+    ## HTTP status codes
+
+
+    | Codes | Description                                                                                 |
+
+    | ----- | ------------------------------------------------------------------------------------------- |
+
+    | 200   | **Ok** A Successful response.                                                               |
+
+    | 201   | **Created** The request has been fulfilled and has resulted in the creation of a resource.  |
+
+    | 400   | **Bad Request**                                                                             |
+
+    | 401   | **Unauthorized** The user has not been authenticated.                                       |
+
+    | 403   | **Forbidden** The user do not have the permissions to perform the action.                   |
+
+    | 404   | **Not found** The resource couldn't be found.                                               |
+
+    | 409   | **Conflict**                                                                                |
+
+    | 412   | **Precondition Failed**                                                                     |
+
+    | 422   | **Unprocessable Entity** The request body is malformed.                                     |
+
+    | 500   | **Internal server error**                                                                   |
+
+    | 503   | **Service Unavailable**                                                                     |
+servers:
+  - url: http://localhost{3000}/app
+    description: Optional localhost
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: token
+      format: jwt
+  responses:
+    InvalidResource:
+      description: Invalid Resource
+      content:
+        application/json:
+          schema:
+            title: Invalid Resource
+            description: You have a missing or malformed parameter
+            allOf:
+              - title: API Error
+                description: Something went wrong
+                type: object
+                properties:
+                  error:
+                    type: object
+                    additionalProperties: false
+                    properties:
+                      message:
+                        type: string
+                        description: A message explaining the error reason with the error code attached
+                          to it
+                      code:
+                        type: string
+                        description: A Unique identifier for the error type
+                      status:
+                        type: number
+                        description: HTTP Status of the response
+                      meta:
+                        type: object
+                        description: Extra information about the error
+                    required:
+                      - message
+                      - code
+                      - status
+                required:
+                  - error
+                additionalProperties: false
+              - type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        example: "IER4006: No se puede procesar la petición"
+                      code:
+                        enum:
+                          - IER4006
+                          - IER4222
+                      status:
+                        example: 422
+    PreconditionFailed:
+      description: Precondition Failed
+      content:
+        application/json:
+          schema:
+            title: Precondition Failed Error
+            type: object
+            allOf:
+              - $ref: "#/components/responses/InvalidResource/content/application~1json/schema/\
+                  allOf/0"
+              - type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      status:
+                        enum:
+                          - 412
+                          - 422
+                    required:
+                      - message
+                      - code
+                      - status
+                      - error
+    NotFound:
+      description: Resource Not Found
+      content:
+        application/json:
+          schema:
+            title: Not Found Error
+            description: You are not authorized to perform this action
+            allOf:
+              - $ref: "#/components/responses/InvalidResource/content/application~1json/schema/\
+                  allOf/0"
+              - properties:
+                  error:
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 404
+                      code:
+                        type: string
+                        example: IER4001
+                        enum:
+                          - IER4001
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            title: Forbidden
+            description: You are not authorized to perform this action
+            type: object
+            allOf:
+              - $ref: "#/components/responses/InvalidResource/content/application~1json/schema/\
+                  allOf/0"
+              - properties:
+                  error:
+                    properties:
+                      status:
+                        type: number
+                        enum:
+                          - 403
+                      code:
+                        type: string
+                        example: IER4001
+                        enum:
+                          - IER4005
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            title: Unauthorized Error
+            description: You are not authorized to perform this action
+            type: object
+            allOf:
+              - $ref: "#/components/responses/InvalidResource/content/application~1json/schema/\
+                  allOf/0"
+security:
+  - BearerAuth: []
+paths:
+  /users:
+    post:
+      summary: Sign up a person.
+      tags:
+        - Users
+      description: |
+        Sign up a person and creates an account
+      operationId: post-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Sign up parameters
+              description: Minimal data required to create a new user account
+              type: object
+              additionalProperties: false
+              required:
+                - email
+                - phone
+                - password
+                - passwordConfirmation
+              properties:
+                email:
+                  type: string
+                  description: Email address
+                  example: some@email.com
+                  format: email
+                phone:
+                  type: string
+                  description: A phone number with country code in E.164 format
+                  example: "+529999234312"
+                password:
+                  description: Password
+                  type: string
+                  example: asdfASDF1$
+                passwordConfirmation:
+                  description: Password confirmation
+                  type: string
+                  example: asdfASDF1$
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: New session data
+                description: New session data
+                type: object
+                required:
+                  - type
+                  - token
+                properties:
+                  token:
+                    type: string
+                  type:
+                    type: string
+        "412":
+          description: Precondition Failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/PreconditionFailed/content/application~1json/sche\
+                  ma"
+        "422":
+          description: Invalid Resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/InvalidResource/content/application~1json/schema"
+tags:
+  - name: Users

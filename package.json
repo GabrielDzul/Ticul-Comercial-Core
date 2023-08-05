@@ -1,0 +1,16 @@
+{
+  "name": "Ticul-Comercial-Core",
+  "version": "1.0.0",
+  "description": "Ticul comercial REST API",
+  "main": "index.js",
+  "repository": "git@github.com:GabrielDzul/Ticul-Comercial-Core.git",
+  "author": "gabrieldzul <gabrieldzul@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@redocly/cli": "^1.0.0",
+    "speccy": "^0.11.0"
+  },
+  "scripts": {
+    "docs:resolve:app": "speccy resolve docs/apidocs/openapi_app.yml --json-schema -o public/docs/ticul-comercial-core-app-openapi.yml"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "file:/not_found.json#",
+  "title": "Not Found Error",
+  "description": "You are not authorized to perform this action",
+  "allOf": [
+    {
+      "$ref": "./api_error.json"
+    },
+    {
+      "properties": {
+        "error": {
+          "properties": {
+            "status": {
+              "type": "number",
+              "enum": [
+                404
+              ]
+            },
+            "code": {
+              "type": "string",
+              "example": "IER4001",
+              "enum": [
+                "IER4001"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+InvalidResource:
+  description: Invalid Resource
+  content:
+    application/json:
+      schema:
+        $ref: '../../../spec/support/schemas/shared/errors/invalid_resource.json'
+PreconditionFailed:
+  description: Precondition Failed
+  content:
+    application/json:
+      schema:
+        $ref: '../../../spec/support/schemas/shared/errors/precondition_failed.json'
+NotFound:
+  description: Resource Not Found
+  content:
+    application/json:
+      schema:
+        $ref: '../../../spec/support/schemas/shared/errors/not_found.json'
+Forbidden:
+  description: Forbidden
+  content:
+    application/json:
+      schema:
+        $ref: '../../../spec/support/schemas/shared/errors/forbidden.json'
+Unauthorized:
+  description: Unauthorized
+  content:
+    application/json:
+      schema:
+        $ref: '../../../spec/support/schemas/shared/errors/unauthorized.json'

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "file:/errors/invalid_jwt.json#",
+  "title": "Invalid JWT",
+  "description": "Represents an invalid resource error",
+  "allOf": [
+    {
+      "$ref": "./api_error.json"
+    },
+    {
+      "properties": {
+        "error": {
+          "properties": {
+            "status": {
+              "enum": [
+                403
+              ]
+            },
+            "code": {
+              "enum": [
+                "INVALIDJWT"
+              ]
+            }
+          },
+          "required": [
+            "message",
+            "code",
+            "status",
+            "error"
+          ]
+        }
+      }
+    }
+  ]
+}

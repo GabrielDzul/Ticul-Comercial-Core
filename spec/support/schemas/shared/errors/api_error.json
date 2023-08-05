@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "file:/api_error.json#",
+  "title": "API Error",
+  "description": "Something went wrong",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A message explaining the error reason with the error code attached to it"
+        },
+        "code": {
+          "type": "string",
+          "description": "A Unique identifier for the error type"
+        },
+        "status": {
+          "type": "number",
+          "description": "HTTP Status of the response"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Extra information about the error"
+        }
+      },
+      "required": [
+        "message",
+        "code",
+        "status"
+      ]
+    }
+  },
+  "required": [
+    "error"
+  ],
+  "additionalProperties": false
+}

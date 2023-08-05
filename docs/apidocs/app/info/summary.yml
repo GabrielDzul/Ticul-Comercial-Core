@@ -1,0 +1,26 @@
+version: "1.0.0"
+title: "Ticul Comercial API Documentation"
+contact:
+  email: "gabrieldzul@gmail.com"
+license:
+  name: "Apache 2.0"
+  url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+description: |
+  # Description
+  Backend to handle users, ads, accounts, payments.
+
+  ## HTTP status codes
+
+  | Codes | Description                                                                                 |
+  | ----- | ------------------------------------------------------------------------------------------- |
+  | 200   | **Ok** A Successful response.                                                               |
+  | 201   | **Created** The request has been fulfilled and has resulted in the creation of a resource.  |
+  | 400   | **Bad Request**                                                                             |
+  | 401   | **Unauthorized** The user has not been authenticated.                                       |
+  | 403   | **Forbidden** The user do not have the permissions to perform the action.                   |
+  | 404   | **Not found** The resource couldn't be found.                                               |
+  | 409   | **Conflict**                                                                                |
+  | 412   | **Precondition Failed**                                                                     |
+  | 422   | **Unprocessable Entity** The request body is malformed.                                     |
+  | 500   | **Internal server error**                                                                   |
+  | 503   | **Service Unavailable**                                                                     |

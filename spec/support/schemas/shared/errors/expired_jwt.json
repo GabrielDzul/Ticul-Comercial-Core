@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "file:/errors/expired_jwt.json#",
+  "title": "Expired JWT",
+  "description": "Represents an expired JWT error",
+  "allOf": [
+    {
+      "$ref": "./api_error.json"
+    },
+    {
+      "properties": {
+        "error": {
+          "properties": {
+            "status": {
+              "type": "number",
+              "enum": [
+                403
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

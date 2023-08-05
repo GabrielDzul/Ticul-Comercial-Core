@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "file:/errors/invalid_resource.json#",
+  "title": "Invalid Resource",
+  "description": "You have a missing or malformed parameter",
+  "allOf": [
+    {
+      "$ref": "./api_error.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "example": "IER4006: No se puede procesar la petición"
+            },
+            "code": {
+              "enum": [
+                "IER4006",
+                "IER4222"
+              ]
+            },
+            "status": {
+              "example": 422
+            }
+          }
+        }
+      }
+    }
+  ]
+}

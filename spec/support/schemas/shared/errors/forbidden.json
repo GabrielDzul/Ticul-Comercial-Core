@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "file:/errors/forbidden.json#",
+  "title": "Forbidden",
+  "description": "You are not authorized to perform this action",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./api_error.json"
+    },
+    {
+      "properties": {
+        "error": {
+          "properties": {
+            "status": {
+              "type": "number",
+              "enum": [
+                403
+              ]
+            },
+            "code": {
+              "type": "string",
+              "example": "IER4001",
+              "enum": [
+                "IER4005"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

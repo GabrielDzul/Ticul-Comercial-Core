@@ -1,0 +1,24 @@
+openapi: "3.0.1"
+info:
+  $ref: 'app/info/summary.yml'
+servers:
+  - url: http://localhost{3000}/app
+    description: Optional localhost
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: token
+      format: jwt
+  responses:
+    $ref: shared/errors.yml
+#  parameters:
+#    $ref: shared/parameters.yml
+security:
+  - BearerAuth: []
+paths:
+  # Users Routes
+  /users:
+    $ref: app/users/users.yml
+tags:
+  - name: Users

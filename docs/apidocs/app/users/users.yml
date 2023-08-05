@@ -1,0 +1,23 @@
+post:
+  summary: Sign up a person.
+  tags:
+    - Users
+  description: |
+    Sign up a person and creates an account
+  operationId: post-user
+  requestBody:
+    content:
+      "application/json":
+        schema:
+          $ref: "../../../../spec/support/schemas/app/users/create.json"
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../spec/support/schemas/app/sessions/token.json"
+    412:
+      $ref: '../../shared/errors.yml#/PreconditionFailed'
+    422:
+      $ref: '../../shared/errors.yml#/InvalidResource'
