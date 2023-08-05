@@ -1,5 +1,5 @@
 module RegexConstants
-  MEXICAN_PHONE           = /^\+52\d{10}$/.freeze
+  MEXICAN_PHONE           = /\A\+52\d{10}\Z/.freeze
   MONEY                   = /\A[+-]?\d+(\.\d{1,6})?\z/.freeze
   PROPER_NOUN             = /\A\p{L}[\p{L}'\.\-]*( [\p{L}'\.\-]+)*\z/u.freeze
   URL_SAFE                = /\A[a-z][\w\-]*\z/.freeze
