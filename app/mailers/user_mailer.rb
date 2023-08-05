@@ -3,6 +3,9 @@ class UserMailer < ApplicationMailer
     user = UserRepository.instance.find_by!(id: user_id)
 
     @name = user.name
+    @confirmation_url = activate_app_users_url(
+      activation_code: user.activation_code
+    )
 
     mail(
       to: user.email,

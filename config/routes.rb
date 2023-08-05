@@ -13,9 +13,18 @@ Rails.application.routes.draw do
 
     # ==================================
     # Users
+    #   - GET  /app/users/activate
     #   - POST /app/users
     # ==================================
-    resources :users, only: %i[create]
+    resources :users, only: %i[create] do
+      collection do
+        get :activate
+      end
+    end
+  end
+
+  resource :misc, only: [], controller: :miscellaneous do
+    get :welcome
   end
 
   # ==================================

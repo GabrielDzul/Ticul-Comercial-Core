@@ -1,0 +1,3 @@
+<%= strip_tags(I18n.t("mailer.welcome.subject", name: @name)) %>
+
+<%= activate_user_miscellaneous_url(code: @activation_code) %>
