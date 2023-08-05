@@ -23,6 +23,10 @@ module TiculComercialCore
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.autoload_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << "#{Rails.root}/lib"
+    config.i18n.default_locale = :es
+    config.i18n.fallbacks = [:en]
     config.generators do |g|
       g.test_framework :rspec
       g.orm :active_record, primary_key_type: :uuid
