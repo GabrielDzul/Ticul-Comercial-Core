@@ -53,7 +53,10 @@ end
 # ==================================
 # Added gems
 # ==================================
+gem 'active_model_serializers'
 gem 'dry-validation', '~> 1.6'
 gem 'dry-types', '~> 1.2'
 gem 'dry-struct', '~> 1.0'
 gem "figaro"
+gem "json-schema"
+gem 'jwt'
