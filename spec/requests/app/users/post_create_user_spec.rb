@@ -7,8 +7,7 @@ RSpec.describe "POST app/users", type: :request do
     params =  {
       email: Faker::Internet.email,
       password: 'h3LL0_w0rld!',
-      passwordConfirmation: 'h3LL0_w0rld!',
-      phone: "+52999#{Faker::Number.number(digits: 7)}",
+      passwordConfirmation: 'h3LL0_w0rld!'
     }
 
     # When

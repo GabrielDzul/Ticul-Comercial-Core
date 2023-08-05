@@ -17,7 +17,7 @@ class User < ApplicationRecord
             uniqueness: { allow_nil: true }
 
   validates :phone,
-            presence: true,
+            allow_blank: true,
             uniqueness: true,
             format: { with: RegexConstants::MEXICAN_PHONE }
 

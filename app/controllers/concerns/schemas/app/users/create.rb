@@ -4,7 +4,6 @@ module Schemas
       class Create < Dry::Validation::Contract
         schema do
           required(:email).filled(Types::Email)
-          required(:phone).filled(Types::StrippedPhone)
           required(:password).filled(:string)
           required(:password_confirmation).filled(:string)
         end

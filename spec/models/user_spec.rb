@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
     is_expected.not_to allow_values('not an email').for(:email)
     is_expected.to allow_value(nil).for(:activation_code)
     is_expected.to allow_value('+529971120789').for(:phone)
-    is_expected.not_to allow_value(nil).for(:phone)
+    is_expected.to allow_value(nil).for(:phone)
     is_expected.not_to allow_value('+909971120789').for(:phone)
   end
 end
