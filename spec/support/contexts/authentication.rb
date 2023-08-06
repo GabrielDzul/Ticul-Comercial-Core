@@ -52,7 +52,7 @@ RSpec.shared_context 'authentication', shared_context: :metadata do
   def create_headers(headers, user)
     {
       'content-type': 'application/json',
-      'Authorization': 'Token ' + JWTServices::Encode.new.execute(user_id: user.id),
+      'Authorization': 'Bearer ' + JWTServices::Encode.new.execute(user_id: user.id),
     }.merge(headers)
   end
 end
