@@ -13,4 +13,15 @@ class UserMailer < ApplicationMailer
     )
   end
 
+  def register_complete(user_id)
+    user = UserRepository.instance.find_by!(id: user_id)
+
+    @name = user.name
+
+    mail(
+      to: user.email,
+      subject: I18n.t('mailer.register_complete.subject')
+    )
+  end
+
 end

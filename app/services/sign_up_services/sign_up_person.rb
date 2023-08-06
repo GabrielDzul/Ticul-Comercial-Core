@@ -1,28 +1,24 @@
 module SignUpServices
   class SignUpPerson
 
-    # @param [String] email
-    # @param [String] password
-    # @param [String] password_confirmation
-    # @param [String] phone
-    # @return [User]
-    def execute(email:, password:, password_confirmation:, phone:)
+    def execute(user, **user_data)
+      raise Error::UnprocessableEntity if user.email_confirmed?
 
-      user = AccountServices::CreateAccount.new
-                                              .execute(phone:,
-                                                       email:,
-                                                       password:,
-                                                       password_confirmation:)
-
-      notify_sign_up_completed user
-      user
+      updated_user = update_data(user, **user_data)
+      ActiveSupport::Notifications.instrument(Events::PERSON_SIGNED_UP, { user: updated_user})
+      updated_user
     end
 
     private
-
-    def notify_sign_up_completed(user)
-      payload = { user_id: user.id }
-      ActiveSupport::Notifications.instrument(Events::PERSON_SIGNED_UP, payload)
+    def update_data(user, **user_data)
+      ActiveRecord::Base.transaction do
+        updated_user = UserRepository.instance.update_from_params!(id: user.id, **user_data)
+        AccountRepository.instance.create_from_params!(
+          user:user
+        )
+        updated_user.reload
+        updated_user
+      end
     end
-  end
+    end
 end

@@ -3,3 +3,5 @@ es:
     welcome:
       subject: "Confirma tu cuenta"
       confirmation_link: "Confirmar cuenta"
+    register_complete:
+      subject: "Has creado una cuenta"

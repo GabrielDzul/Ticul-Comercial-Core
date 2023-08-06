@@ -4,6 +4,6 @@ class SignUpSubscriber < ActiveSupport::Subscriber
 
   def person_signed_up(msg)
     user_id = msg.payload[:user_id]
-    UserMailer.welcome(user_id).deliver_later
+    UserMailer.register_complete(user_id).deliver_later
   end
 end

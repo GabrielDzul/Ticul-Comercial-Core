@@ -1,0 +1,82 @@
+{
+  "title": "user",
+  "description": "A user in the application",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "title": "User",
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ],
+      "properties": {
+        "id": {
+          "description": "Resource id",
+          "type": "string"
+        },
+        "type": {
+          "description": "Resource type",
+          "type": "string",
+          "enum": [
+            "users"
+          ]
+        },
+        "attributes": {
+          "description": "User attributes",
+          "type": "object",
+          "required": [
+            "email",
+            "status",
+            "isEmailConfirmed"
+          ],
+          "properties": {
+            "phone": {
+              "type": "string",
+              "description": "The phone number used by the user",
+              "example": "+529999234312"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name(s)",
+              "example": "Flor Yameli"
+            },
+            "paternalSurname": {
+              "type": "string",
+              "description": "Paternal Surname",
+              "example": "Ortiz"
+            },
+            "maternalSurname": {
+              "type": "string",
+              "description": "Maternal Surname",
+              "example": "Chim"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address",
+              "format": "email"
+            },
+            "status": {
+              "type": "string",
+              "description": "User registration status",
+              "enum": [
+                "complete",
+                "incomplete",
+                "blocked"
+              ]
+            },
+            "isEmailConfirmed": {
+              "type": "boolean",
+              "description": "The user has verified his email"
+            }
+          }
+        }
+      }
+    }
+  }
+}
