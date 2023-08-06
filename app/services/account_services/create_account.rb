@@ -15,7 +15,6 @@ module AccountServices
     def create_account(email:, phone:, password:, password_confirmation:)
       ActiveRecord::Base.transaction do
         user = create_user!(email: email, phone: phone)
-        create_password(user:, password:, password_confirmation:)
       end
     end
 
@@ -28,13 +27,6 @@ module AccountServices
         user:user
       )
       user
-    end
-
-    def create_password(user:, password:, password_confirmation:)
-      AuthenticationServices::CreatePassword.new
-                                            .execute(user,
-                                                     password:,
-                                                     password_confirmation:)
     end
   end
 end
