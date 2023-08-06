@@ -11,7 +11,7 @@ module Attributes
         active: ACTIVE,
         inactive: INACTIVE,
         blocked: BLOCKED
-      }, _suffix: true, _default: INACTIVE
+      }, _suffix: true, _default: ACTIVE
     end
   end
 end
