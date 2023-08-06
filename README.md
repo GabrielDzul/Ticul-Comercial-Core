@@ -1,24 +1,57 @@
-# README
+##### Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The setups steps expect following tools installed on the system.
 
-Things you may want to cover:
+- Github
+- Ruby [3.1.2](https://github.com/organization/project-name/blob/master/.ruby-version#L1)
+- Rails [7.1.0](https://github.com/organization/project-name/blob/master/Gemfile#L12)
 
-* Ruby version
+##### Check out the repository
 
-* System dependencies
+```bash
+git clone git@github.com:GabrielDzul/Ticul-Comercial-Core.git
+```
 
-* Configuration
+#### Install dependencies
 
-* Database creation
+```bash
+bundle install
+```
 
-* Database initialization
+#### Set environment variables
 
-* How to run the test suite
+Using [Figaro](https://github.com/laserlemon/figaro):
 
-* Services (job queues, cache servers, search engines, etc.)
+See [config/application.yml.sample](https://github.com/juliendargelos/project/blob/master/config/application.yml.sample)
 
-* Deployment instructions
 
-* ...
+#### Create database.yml file
+
+Copy the sample database.yml file and edit the database configuration as required.
+
+```bash
+cp config/database.yml.sample config/database.yml
+```
+
+#### Create and setup the database
+
+Run the following commands to create and setup the database.
+
+```ruby
+bundle exec rake db:create
+bundle exec rake db:setup
+```
+
+#### Start the Rails server
+
+You can start the rails server using the command given below.
+
+```ruby
+bundle exec rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000
+
+#### Access the API docs
+
+http://localhost:3000/docs

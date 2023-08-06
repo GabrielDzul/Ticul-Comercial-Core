@@ -46,10 +46,11 @@ servers:
     description: Optional localhost
 components:
   securitySchemes:
-    JWTAuth:
+    BearerAuth:
       type: http
-      scheme: token
-      format: jwt
+      scheme: bearer
+      format: JWT
+      description: A JWT token is required to access this API
   responses:
     InvalidResource:
       description: Invalid Resource
@@ -183,13 +184,139 @@ components:
 security:
   - BearerAuth: []
 paths:
+  /sign_up:
+    post:
+      summary: Completes the information of a user and creates an account.
+      tags:
+        - Sign Up
+      description: >
+        Updates a user's missing information, sets its status to active and
+        creates an account.
+      operationId: sign-up-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Registration attributes
+              description: The registration attributes
+              type: object
+              additionalProperties: false
+              required:
+                - name
+                - paternalSurname
+                - maternalSurname
+                - email
+                - phone
+              properties:
+                name:
+                  type: string
+                  description: Name(s)
+                  example: Flor Yameli
+                paternalSurname:
+                  type: string
+                  description: Paternal Surname
+                  example: Ortiz
+                maternalSurname:
+                  type: string
+                  description: Maternal Surname
+                  example: Chim
+                email:
+                  type: string
+                  description: Email address
+                  example: some@email.com
+                  format: email
+                phone:
+                  type: string
+                  description: A phone number with country code in E.164 format
+                  example: "+529999234312"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user
+                description: A user in the application
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    title: User
+                    required:
+                      - id
+                      - type
+                      - attributes
+                    properties:
+                      id:
+                        description: Resource id
+                        type: string
+                      type:
+                        description: Resource type
+                        type: string
+                        enum:
+                          - users
+                      attributes:
+                        description: User attributes
+                        type: object
+                        required:
+                          - email
+                          - status
+                          - isEmailConfirmed
+                        properties:
+                          phone:
+                            type: string
+                            description: The phone number used by the user
+                            example: "+529999234312"
+                          name:
+                            type: string
+                            description: Name(s)
+                            example: Flor Yameli
+                          paternalSurname:
+                            type: string
+                            description: Paternal Surname
+                            example: Ortiz
+                          maternalSurname:
+                            type: string
+                            description: Maternal Surname
+                            example: Chim
+                          email:
+                            type: string
+                            description: Email address
+                            format: email
+                          status:
+                            type: string
+                            description: User registration status
+                            enum:
+                              - complete
+                              - incomplete
+                              - blocked
+                          isEmailConfirmed:
+                            type: boolean
+                            description: The user has verified his email
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Unauthorized/content/application~1json/schema"
+        "422":
+          description: Invalid Resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/InvalidResource/content/application~1json/schema"
   /users:
     post:
-      summary: Sign up a person.
+      summary: Creates a user and password.
+      security:
+        - null
       tags:
         - Users
-      description: |
-        Sign up a person and creates an account
+      description: >
+        Creates a users and its password. No account is yet created at this
+        point.
       operationId: post-user
       requestBody:
         content:
@@ -210,10 +337,6 @@ paths:
                   description: Email address
                   example: some@email.com
                   format: email
-                phone:
-                  type: string
-                  description: A phone number with country code in E.164 format
-                  example: "+529999234312"
                 password:
                   description: Password
                   type: string
@@ -247,10 +370,7 @@ paths:
                 $ref: "#/components/responses/PreconditionFailed/content/application~1json/sche\
                   ma"
         "422":
-          description: Invalid Resource
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/responses/InvalidResource/content/application~1json/schema"
+          $ref: "#/paths/~1sign_up/post/responses/422"
 tags:
   - name: Users
+  - name: Sign Up
