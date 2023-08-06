@@ -4,6 +4,7 @@ module SignUpServices
     def execute(user, **user_data)
       raise Error::UnprocessableEntity if user.email_confirmed?
 
+      user_data[:status] = Attributes::UserStatus::COMPLETE
       updated_user = update_data(user, **user_data)
       ActiveSupport::Notifications.instrument(Events::PERSON_SIGNED_UP, { user: updated_user})
       updated_user

@@ -32,6 +32,7 @@ describe 'SignUpServices::SignUpPerson', type: :service do
       it do
         message_double = mock_mailer
         expect(subject).to be_instance_of(User)
+        expect(subject.status).to eq User::COMPLETE
         expect(subject.accounts).not_to be_nil
         expect(subject.accounts.first).to be_an_instance_of Account
         expect(subject.accounts.first.balance).to eq 0.0
