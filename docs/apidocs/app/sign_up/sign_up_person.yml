@@ -1,0 +1,23 @@
+post:
+  summary: Completes the information of a user and creates an account.
+  tags:
+    - Sign Up
+  description: |
+    Updates a user's missing information, sets its status to active and creates an account.
+  operationId: sign-up-user
+  requestBody:
+    content:
+      "application/json":
+        schema:
+          $ref: "../../../../spec/support/schemas/app/sign_up/create.json"
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../spec/support/schemas/app/users/user.json"
+    401:
+      $ref: '../../shared/errors.yml#/Unauthorized'
+    422:
+      $ref: '../../shared/errors.yml#/InvalidResource'

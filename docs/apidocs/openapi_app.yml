@@ -6,10 +6,11 @@ servers:
     description: Optional localhost
 components:
   securitySchemes:
-    JWTAuth:
+    BearerAuth:
       type: http
-      scheme: token
-      format: jwt
+      scheme: bearer
+      format: JWT
+      description: A JWT token is required to access this API
   responses:
     $ref: shared/errors.yml
 #  parameters:
@@ -17,8 +18,12 @@ components:
 security:
   - BearerAuth: []
 paths:
+  # Sign up Routes
+  /sign_up:
+    $ref: app/sign_up/sign_up_person.yml
   # Users Routes
   /users:
     $ref: app/users/users.yml
 tags:
   - name: Users
+  - name: Sign Up

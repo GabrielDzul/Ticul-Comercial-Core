@@ -1,9 +1,11 @@
 post:
-  summary: Sign up a person.
+  summary: Creates a user and password.
+  security:
+    - null
   tags:
     - Users
   description: |
-    Sign up a person and creates an account
+    Creates a users and its password. No account is yet created at this point.
   operationId: post-user
   requestBody:
     content:

@@ -1,0 +1,42 @@
+{
+  "id": "file:/app/sign_up/create.json#",
+  "title": "Registration attributes",
+  "description": "The registration attributes",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "paternalSurname",
+    "maternalSurname",
+    "email",
+    "phone"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name(s)",
+      "example": "Flor Yameli"
+    },
+    "paternalSurname": {
+      "type": "string",
+      "description": "Paternal Surname",
+      "example": "Ortiz"
+    },
+    "maternalSurname": {
+      "type": "string",
+      "description": "Maternal Surname",
+      "example": "Chim"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address",
+      "example": "some@email.com",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "A phone number with country code in E.164 format",
+      "example": "+529999234312"
+    }
+  }
+}
