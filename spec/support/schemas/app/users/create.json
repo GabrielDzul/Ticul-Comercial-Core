@@ -17,11 +17,6 @@
       "example": "some@email.com",
       "format": "email"
     },
-    "phone": {
-      "type": "string",
-      "description": "A phone number with country code in E.164 format",
-      "example": "+529999234312"
-    },
     "password": {
       "description": "Password",
       "type": "string",
